@@ -161,60 +161,53 @@
   const texts = [
     "Learning DevOps from Termux in Soweto 🇿🇦",
     "I build CI/CD pipelines",
-    "I automate infrastructure",
+    "I automate infrastructure", 
     "I deploy with GitHub Pages"
   ];
   
   let textIndex = 0;
   let charIndex = 0;
-  let isDeleting = false;
-  const typingElement = document.getElementById('typing');
-  
-  function type() {
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-      typingElement.textContent = currentText.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      typingElement.textContent = currentText.substring(0, charIndex + 1);
-      charIndex++;
-    }
-    
-    let typeSpeed = isDeleting? 50 : 100;
-    
-    if (!isDeleting && charIndex === currentText.length) {
-      typeSpeed = 2000; // pause at end
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      textIndex = (textIndex + 1) % texts.length;
-      typeSpeed = 500; // pause before next
-    }
-    
-    setTimeout(type, typeSpeed);
-  }
-  
-  // Start typing when page loads
-  document.addEventListener('DOMContentLoaded', type);
+  let isDeleting = false;const typingElement = document.getElementById('typing');
 
-  function toggleMode() {
-    const body = document.body;
-    const btn = document.getElementById('toggleBtn');
-    body.classList.toggle('dark');
-    body.classList.toggle('light');
-    btn.textContent = body.classList.contains('dark')? '☀️' : '🌙';
+function type() {
+  const currentText = texts[textIndex];
+  
+  if (isDeleting) {
+    typingElement.textContent = currentText.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typingElement.textContent = currentText.substring(0, charIndex + 1);
+    charIndex++;
   }
-</script>  
-  <script>
-    function toggleMode() {
-      const body = document.body;
-      const btn = document.getElementById('toggleBtn');
-      body.classList.toggle('dark');
-      body.classList.toggle('light');
-      btn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
-    }
-  </script>
+  
+  let typeSpeed = isDeleting? 50 : 100;
+  
+  if (!isDeleting && charIndex === currentText.length) {
+    typeSpeed = 2000;
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    textIndex = (textIndex + 1) % texts.length;
+    typeSpeed = 500;
+  }
+  
+  setTimeout(type, typeSpeed);
+}
+
+document.addEventListener('DOMContentLoaded', type);
+</script>
+
+<script>
+function toggleMode() {
+  const body = document.body;
+  const btn = document.getElementById('toggleBtn');
+  body.classList.toggle('dark');
+  body.classList.toggle('light');
+  btn.textContent = body.classList.contains('dark')? '☀️' : '🌙';
+}
+</script>
+
+  
   
 </body>
 </html>
